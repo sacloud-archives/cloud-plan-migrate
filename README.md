@@ -91,7 +91,7 @@ cloud-plan-migrateはDockerイメージも提供しています。
 
 ```bash
 # カレントディレクトリにログ出力されるため-vオプションを指定
-$ docker run -it --rm -v $PWD:/work cloud-plan-migrate <ID or 名称>
+$ docker run -it --rm -v $PWD:/work sacloud/cloud-plan-migrate <ID or 名称>
 ```
 
 ## 注意/制限事項
