@@ -1,0 +1,15 @@
+FROM golang:1.11
+MAINTAINER Kazumichi Yamamoto <yamamoto.febc@gmail.com>
+
+RUN  apt-get update && apt-get -y install \
+        bash \
+        git  \
+        make \
+        zip  \
+      && apt-get clean \
+      && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+
+ADD . /go/src/github.com/sacloud/cloud-plan-migrate
+WORKDIR /go/src/github.com/sacloud/cloud-plan-migrate
+RUN make tools
+CMD ["make"]

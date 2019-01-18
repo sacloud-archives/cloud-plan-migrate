@@ -1,0 +1,7 @@
+.env
+
+vendor/
+bin/*
+tools/bin/*
+cloud-plan-migrate-docker
+releases-cloud-plan-migrate
