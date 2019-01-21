@@ -169,13 +169,13 @@ func (m *Migration) applyServer(status *ServerStatus) {
 		return
 	}
 
-	// disconnect disk
-	if err := m.handleSteps(m.disconnectDisks, status, status.stepDisconnectDisks); err != nil {
+	// clone disk
+	if err := m.handleSteps(m.cloneDisks, status, status.cloneDiskSteps()...); err != nil {
 		return
 	}
 
-	// clone disk
-	if err := m.handleSteps(m.cloneDisks, status, status.cloneDiskSteps()...); err != nil {
+	// disconnect disk
+	if err := m.handleSteps(m.disconnectDisks, status, status.stepDisconnectDisks); err != nil {
 		return
 	}
 
