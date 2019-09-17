@@ -90,12 +90,18 @@ func (c *client) CloneDisk(id int64) (<-chan interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
+	// [HACK]: プランが標準プラン:20GBの場合、対応する標準プランが新プランに存在しないためSSDプランへ変更する。
+	planID := sourceDisk.GetPlanID()
+	if planID == int64(sacloud.DiskPlanHDDID) && sourceDisk.GetSizeGB() == 20 {
+		planID = int64(sacloud.DiskPlanSSDID)
+	}
+
 	params := c.apiClient.Disk.New()
 	params.SetDescription(sourceDisk.Description)
 	if sourceDisk.HasIcon() {
 		params.SetIconByID(sourceDisk.GetIconID())
 	}
-	params.Plan = sacloud.NewResource(sourceDisk.GetPlanID())
+	params.Plan = sacloud.NewResource(planID)
 	params.SetSizeMB(sourceDisk.GetSizeMB())
 
 	// DistantFromは未サポート
