@@ -1,3 +1,5 @@
+> :warning: このリポジトリは石狩第1ゾーンでの旧プラン提供が終了したため開発を終了しました。
+
 # cloud-plan-migrate
 
 ## Overview
